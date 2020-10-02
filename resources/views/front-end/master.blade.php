@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Smart Recruitment System</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('/front-end')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,22 +28,18 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index.html">JobSite.com</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
+        <a class="navbar-brand" href="/">SRS.com</a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown show">
-                        <button class="btn btn-secondary dropdown-toggle bg-transparent border-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-item dropdown show">
+                        <a class="nav-link dropdown-toggle bg-transparent border-0 text-white font-weight-bold" style="font-size: 14px;" type="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             My jobs
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach(\App\Category::all() as $category)
                                 <a class="dropdown-item" href="{{ route('show.category', ['category' => $category->id]) }}">{{ $category->cat_name }}</a>
                             @endforeach
@@ -52,8 +48,8 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <a class=" btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bg-transparent border-0 text-white font-weight-bold" style="font-size: 14px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             My Profile
                         </a>
 
@@ -63,16 +59,14 @@
                         </div>
                     </div>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="post.html">Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="{{route('contact')}}">Contact</a>
                 </li>
                 <li class="nav-item d-flex">
                     @if(\Illuminate\Support\Facades\Auth::user() === null)
-                        <a class="nav-link  mx-2" href="{{route('login')}}">Login</a>
-                        <a class="nav-link " href="{{route('register')}}">Register</a>
+                        <a class="nav-link mx-2 border-1" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link border-1" href="{{ route('register') }}">Register</a>
                     @else
                         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -97,7 +91,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>SMART RECRUITMENT SYSTEM</h1>
+                    <h2>SMART RECRUITMENT SYSTEM</h2>
                 </div>
             </div>
         </div>
@@ -132,6 +126,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
+{{--                        <a href="https://github.com/joypal23jkp">--}}
                         <a href="#">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
@@ -140,7 +135,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+                <p class="copyright text-muted"></p>
             </div>
         </div>
     </div>

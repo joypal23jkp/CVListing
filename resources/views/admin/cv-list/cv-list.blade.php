@@ -36,8 +36,7 @@
                                 <tr>
                                     <th>Sl No</th>
                                     <th>id</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Name</th>
                                     <th>Address</th>
                                     <th>Contact</th>
                                     <th>Action</th>
@@ -52,33 +51,91 @@
                                     <tr>
                                         <td>{{$i++}}</td>
                                         <td>{{$cv->id}}</td>
-                                        <td>{{$cv->first_name}}</td>
-                                        <td>{{$cv->last_name}}</td>
+                                        <td>{{$cv->first_name.' '.$cv->last_name}}</td>
                                         <td>{{$cv->address}}</td>
                                         <td>{{$cv->contact}}</td>
                                         <td>
                                             <a href="#viewModal{{$cv->id}}" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" >
-                                                <span><i class="fa fa-i-cursor"></i> </span> </a>
+                                                <span><i class="fa fa-arrows"></i> </span> </a>
                                         </td>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="card" style="width: 100%; padding: 20px; border: 1px solid green">
-                                                <div class="card-header bg-success text-white font-weight-bold">
-                                                    CV Information
+                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="card" style="width: 100%; padding: 20px; border: 1px solid green">
+                                                    <div class="card-header font-weight-bold bg-transparent">
+                                                        CV Information
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <ul class="list-group list-group-flush font-weight-bold">
+                                                                <li class="list-group-item">First Name:</li>
+                                                                <li class="list-group-item">Last Name</li>
+                                                                <li class="list-group-item">Father Name</li>
+                                                                <li class="list-group-item">Mother Name</li>
+                                                                <li class="list-group-item">Email</li>
+                                                                <li class="list-group-item">Gender </li>
+                                                                <li class="list-group-item">Address </li>
+                                                                <li class="list-group-item">Contact </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item">{{ $cv->first_name }}</li>
+                                                                <li class="list-group-item">{{ $cv->last_name }}</li>
+                                                                <li class="list-group-item">{{ $cv->father_name }}</li>
+                                                                <li class="list-group-item">{{ $cv->mother_name }}</li>
+                                                                <li class="list-group-item">{{ $cv->email }}</li>
+                                                                <li class="list-group-item">{{ $cv->gender }}</li>
+                                                                <li class="list-group-item">{{ $cv->address }}</li>
+                                                                <li class="list-group-item">{{ $cv->contact }}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="card row">
+                                                        <div class="card-header bg-dark text-white">
+                                                            Skill
+                                                        </div>
+                                                        <div class="card-body">
+                                                                @foreach(\App\Skill::where('cv_id', '=', $cv->id)->get() as $key => $skill)
+                                                                     <span class="badge badge-warning p-2">{{ $skill->title }}</span>
+                                                                @endforeach
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="card row">
+                                                        <div class="card-header bg-dark text-white">
+                                                            Experience
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @foreach(\App\Experience::where('cv_id', '=', $cv->id)->get() as $key => $experience)
+                                                                <span class="badge badge-warning p-2">{{ $experience->position }}</span>
+                                                                <span class="badge badge-warning p-2">{{ $experience->org_name }}</span>
+                                                                <span class="badge badge-warning p-2">{{ $experience->	year_of_experience }}</span>
+                                                            @endforeach
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="card row">
+                                                        <div class="card-header bg-dark text-white">
+                                                            Education
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @foreach(\App\Education::where('cv_id', '=', $cv->id)->get() as $key => $education)
+                                                                <span class="badge badge-warning p-2">{{ $education->title }}</span>
+                                                                <span class="badge badge-warning p-2">{{ $education->academic_year }}</span>
+                                                                <span class="badge badge-warning p-2">{{ $education->result }}</span>
+                                                            @endforeach
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Cras justo odio</li>
-                                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                    <li class="list-group-item">Vestibulum at eros</li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

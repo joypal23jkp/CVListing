@@ -56,15 +56,7 @@
                     </a>
                 </li>
 
-{{--                <li class="nav-item has-treeview">--}}
-{{--                    <a href="{{route('admin.aptitude')}}" class="nav-link">--}}
-{{--                        <i class="nav-icon fa fa-pie-chart"></i>--}}
-{{--                        <p>--}}
-{{--                            Aptitude Questions--}}
-{{--                            <i class="right fa fa-angle-left"></i>--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+
                 <li class="nav-item has-treeview">
                     <a href="{{route('admin.cv-list')}}" class="nav-link">
                         <i class="nav-icon fa fa-pie-chart"></i>
@@ -73,11 +65,12 @@
                             <i class="right fa fa-arrow-circle-left"></i>
                         </p>
                     </a>
+
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('admin.shortlisted.cv')}}" class="nav-link">
                         <i class="nav-icon fa fa-tree"></i>
-                        <p> Personality Questions</p>
+                        <p> Shortlisted CV</p>
                     </a>
 
                 </li>

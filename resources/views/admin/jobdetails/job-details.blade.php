@@ -18,8 +18,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Data Tables</li>
+                            {{ request()->path()  }}
                         </ol>
                     </div>
                 </div>
@@ -47,9 +46,6 @@
                                     <th>Vacancy</th>
                                     <th>Job Responsibilities</th>
                                     <th>Employment Status</th>
-{{--                                    <th>Educational Requirements</th>--}}
-{{--                                    <th>Experience Requirements</th>--}}
-{{--                                    <th>Additional Requirements</th>--}}
                                     <th>Job Location</th>
                                     <th>Salary</th>
                                     <th>Category Name</th>
@@ -67,32 +63,29 @@
                                    <td>{{$jobdetails->vacancy}}</td>
                                    <td>{{$jobdetails->job_responsibilities}}</td>
                                    <td>{{$jobdetails->employee_status}}</td>
-{{--                                   <td>{{$jobdetails->educational_requirement}}</td>--}}
-{{--                                   <td>{{$jobdetails->experience_requirement}}</td>--}}
-{{--                                   <td>{{$jobdetails->additional_requirement}}</td>--}}
                                    <td>{{$jobdetails->job_location}}</td>
                                    <td>{{$jobdetails->salary}}</td>
-                                    <td>{{$jobdetails->category_id}}</td>
+                                    <td>{{ \App\Category::find($jobdetails->category_id)->cat_name }}</td>
 
-                                    <td>{{$jobdetails->status==1 ? 'published':'unpublished'}}</td>
+                                    <td>{{$jobdetails->is_active == 1 ? 'Active':'DeActive'}}</td>
 
                                    <td>
-                                        @if($jobdetails->status==1)
-                                            <a href="{{route('admin.unpub-jobDetails',['id'=>$jobdetails->id])}}" class="btn btn-primary">
+                                        @if($jobdetails->is_active == 1)
+                                            <a href="{{route('admin.unpub-jobDetails',['id'=>$jobdetails->id])}}" class="btn m-2 btn-primary">
                                                 <span><i class="fa fa-arrow-up"></i> </span>
                                             </a>
                                         @else
-                                            <a href="{{route('admin.pub-jobDetails',['id'=>$jobdetails->id])}}" class="btn btn-warning">
+                                            <a href="{{route('admin.pub-jobDetails',['id'=>$jobdetails->id])}}" class="btn m-2 btn-warning">
                                                 <span><i class="fa fa-arrow-down"></i> </span>
                                             </a>
                                         @endif
-                                        <a href="#editModal{{$jobdetails->id}}" class="btn btn-success" data-toggle="modal" >
+                                        <a href="#editModal{{$jobdetails->id}}" class="btn m-2 btn-success" data-toggle="modal" >
                                             <span><i class="fa fa-edit"></i> </span>
                                         </a>
-                                         <a href="#viewModal{{$jobdetails->id}}" class="btn btn-success" data-toggle="modal" >
+                                         <a href="#viewModal{{$jobdetails->id}}" class="btn m-2 btn-success" data-toggle="modal" >
                                             <span><i class="fa fa-search-plus"></i> </span>
                                          </a>
-                                        <a href="{{route('admin.delete-jobDetails',['id'=>$jobdetails->id])}}" class="btn btn-danger">
+                                        <a href="{{route('admin.delete-jobDetails',['id'=>$jobdetails->id])}}" class="btn m-2 btn-danger">
                                             <span><i class="fa fa-trash"></i> </span>
                                         </a>
                                    </td>

@@ -132,79 +132,95 @@
 
             </form>
 
-            <div class="modal fade bd-example-modal-sm" id="ex_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+            <div class="modal fade bd-example-modal-lg" id="ex_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form class="login100-form validate-form" action="{{route('cv.add.experience')}}" method="post" novalidate>
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 ">
                                     <label for="validationCustom01">Position</label>
-                                    <input type="text" class="form-control" name="position" id="validationCustom01" value="" required>
+                                    <input type="text" class="form-control" name="position" id="validationCustom01" value="" required style=" border-bottom: 1px solid; margin: 16px 0; ">
+                                    <input type="number" name="cv_id" id="validationCustom01" value="{{ $cv->id }}" hidden required style=" border-bottom: 1px solid; margin: 16px 0; "/>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="validationCustom02">Organization Name</label>
-                                    <input type="text" class="form-control" name="org_name" id="validationCustom02" value="" required>
+                                    <input type="text" class="form-control" name="org_name" id="validationCustom02" value="" required style=" border-bottom: 1px solid; margin: 16px 0; ">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 ">
                                     <label for="validationCustom01">Year of Experience</label>
-                                    <input type="text" class="form-control" name="year_of_experience" id="validationCustom01" value="" required>
-
+                                    <input type="text" class="form-control" name="year_of_experience" id="validationCustom01" value="" required style=" border-bottom: 1px solid; margin: 16px 0; ">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary" style="
+                                                                        margin-left: 0;
+                                                                        font-size: 12px;
+                                                                        min-width: 101px;
+                                                                        border-radius: 45px; "
+                            >Add</button>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade bd-example-modal-sm" id="edu_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+            <div class="modal fade bd-example-modal-lg" id="edu_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form class="login100-form validate-form" action="{{route('cv.add.education')}}" method="post" novalidate>
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 ">
                                     <label for="validationCustom01">Academic Title</label>
-                                    <input type="text" class="form-control" name="title" id="validationCustom01" value="" required>
+                                    <input type="text" class="form-control" name="title" id="validationCustom01" value="" required style=" border-bottom: 1px solid; margin: 16px 0; ">
+                                    <input type="number" name="cv_id" id="validationCustom01" value="{{ $cv->id }}" hidden required style=" border-bottom: 1px solid; margin: 16px 0; "/>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="validationCustom02">Academic Year</label>
-                                    <input type="text" class="form-control" name="academic_year" id="validationCustom02" value="" required>
+                                    <input type="text" class="form-control" name="academic_year" id="validationCustom02" value="" required style=" border-bottom: 1px solid; margin: 16px 0; ">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 ">
                                     <label for="validationCustom01">Academic Result</label>
-                                    <input type="text" class="form-control" name="result" id="validationCustom01" value="" required>
+                                    <input type="text" class="form-control" name="result" id="validationCustom01" value="" required style=" border-bottom: 1px solid; margin: 16px 0; ">
 
                                 </div>
 
                             </div>
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary" style="
+                                                                        margin-left: 0;
+                                                                        font-size: 12px;
+                                                                        min-width: 101px;
+                                                                        border-radius: 45px; "
+
+                            >Add</button>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade bd-example-modal-sm" id="skill_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+            <div class="modal fade bd-example-modal-lg" id="skill_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <form class="login100-form validate-form" action="{{route('cv.add.skills')}}" method="post" novalidate>
                             @csrf
-                            <div class="form-row">
-                                <div class="col-md-6 ">
-                                    <label for="validationCustom01">Skills Title</label>
-                                    <input type="text" class="form-control" name="title" id="validationCustom01" value="" required>
-
+                            <div class="">
+                                <div class="col-md-6 p-0">
+                                    <label for="validationCustom01" class="font-weight-bold">Skills Title</label>
+                                    <input type="text" name="title" id="validationCustom01" value="" required style=" border-bottom: 1px solid; margin: 16px 0; "/>
+                                    <input type="number" name="cv_id" id="validationCustom01" value="{{ $cv->id }}" hidden required style=" border-bottom: 1px solid; margin: 16px 0; "/>
                                 </div>
+                                <button type="submit" class="btn btn-primary d-block" style="
+                                                                        margin-left: 0;
+                                                                        font-size: 12px;
+                                                                        min-width: 101px;
+                                                                        border-radius: 45px; "
+                                >Add</button>
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Add</button>
                         </form>
                     </div>
                 </div>

@@ -15,7 +15,7 @@
                 @endif
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Jobs Criteria</h1>
+                        <h1>Short Listed CV List</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -29,41 +29,37 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <span class="h4">Jobs Criteria List</span>
-                            <button class="btn btn-primary float-right" data-toggle="modal" data-target="#staticBackdrop">
-                                <i class="fa fa-plus-square"></i>
-
-                            </button>
-                        </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>Sl No</th>
-                                    <th>Job Name</th>
-                                    <th>Criteria Name</th>
-                                    <th>Evaluation Point</th>
-                                    <th>Criteria Type</th>
+                                    <th>Name</th>
+                                    <th>email</th>
+                                    <th>Contact</th>
+                                    <th>CV Evaluation Rating</th>
+                                    <th>Job Title + Organization</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                @php($i=1)
-                                @if($jobs_criteria != null)
-                                @foreach($jobs_criteria as $jobscriteria)
+                                @foreach($job_cv_list as $key => $job_cv)
+                                    <?php
+                                    $cv = \App\CreateCV::find($job_cv->cv_id)->first();
+                                    ?>
                                     <tr>
-                                        <td>{{$i++}}</td>
-                                        <td>{{ \App\Jobdetails::find($jobscriteria->job_detail_id)->job_title }}</td>
-                                        <td>{{\App\Criteria::find($jobscriteria->criteria_id)->criteria_name}}</td>
-                                        <td>{{$jobscriteria->evaluation_point}}</td>
-                                        <td>{{$jobscriteria->criteria_type}}</td>
-
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{$cv->first_name.' '.$cv->last_name}}</td>
+                                        <td>{{$cv->email}}</td>
+                                        <td>{{$cv->contact}}</td>
+                                        <td>{{ $job_cv->cv_weight}}</td>
+                                        <?php
+                                        $job = \App\Jobdetails::find($job_cv->job_id);
+                                        ?>
+                                        <td>{{ $job->job_title.' ( '.$job->company_name.' ) ' }}</td>
                                     </tr>
-{{--                                    @include('admin.jobs-criteria.edit-jobs-criteria')--}}
+
                                 @endforeach
-                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -72,6 +68,5 @@
             </div>
         </section>
     </div>
-    @include('admin.Jobs-criteria.add-Jobs-criteria')
 @endsection
 

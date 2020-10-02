@@ -11,30 +11,35 @@
                 <form action="{{route('admin.jobsCriteria-save')}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Job Title </label>
-                        <input type="text" name="job_title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
+                        <label for="exampleFormControlSelect1">Job Title</label>
+                        <select class="form-control" name="job_id">
+                            @foreach(\App\Jobdetails::where('is_active', '=', 1)->get() as $jobs)
+                                <option value="{{$jobs->id}}">{{$jobs->job_title}}</option>
+                            @endforeach
+                        </select>
                     </div>
+
+
                     <div class="form-group">
                         <label for="exampleInputPassword1">Criteria Name</label>
-                        <input type="text" name="criteria_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="criteria_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="# B.sc in Swe">
 
                     </div>
 
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Criteria Type</label>
-                        <input type="text" name="criteria_type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="criteria_type" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="# Education">
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Evaluation Point</label>
-                        <input type="text" name="criteria_point" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="criteria_point" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="# 20">
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Criteria Description</label>
-                        <textarea name="criteria_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
+                        <textarea name="criteria_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="# type how you want to describe."></textarea>
                     </div>
 
 

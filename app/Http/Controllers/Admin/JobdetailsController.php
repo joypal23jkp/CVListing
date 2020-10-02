@@ -20,51 +20,49 @@ class JobdetailsController extends Controller
     }
 
      public function saveJobDetails(Request $request){
-//         $categories = Category::all();
-//         return view('admin.jobdetails.job-details',[
-//             'categories'=>$categories
-//         ]);
 
-        $jobdetails = new Jobdetails();
+        $job_detail = new Jobdetails();
 
-         $jobdetails->job_title = $request->job_title;
-         $jobdetails->company_name = $request->company_name;
-         $jobdetails->vacancy = $request->vacancy;
-         $jobdetails->job_responsibilities = $request->job_responsibilities;
-         $jobdetails->employee_status = $request->employee_status;
-         $jobdetails->educational_requirement = $request->educational_requirement;
-         $jobdetails->experience_requirement = $request->experience_requirement;
-         $jobdetails->additional_requirement = $request->additional_requirement;
-         $jobdetails->job_location = $request->job_location;
-         $jobdetails->salary = $request->salary;
-         $jobdetails->category_id = $request->category_id;
-//         $jobdetails->status = $request->status;
-         $jobdetails->save();
-
+         $job_detail->job_title = $request->job_title;
+         $job_detail->company_name = $request->company_name;
+         $job_detail->vacancy = $request->vacancy;
+         $job_detail->job_responsibilities = $request->job_responsibilities;
+         $job_detail->employee_status = $request->employee_status;
+         $job_detail->educational_requirement = $request->educational_requirement;
+         $job_detail->experience_requirement = $request->experience_requirement;
+         $job_detail->additional_requirement = $request->additional_requirement;
+         $job_detail->job_location = $request->job_location;
+         $job_detail->salary = $request->salary;
+         $job_detail->category_id = $request->category_id;
+         $job_detail->is_active = 1;
+         if ($job_detail->save())
          return redirect()->back()->with('message','Job Details Added Successfully');
 
      }
 
-    public function unpublishedjobDetails($id){
-        $jobdetails = Jobdetails::find($id);
-        $jobdetails->status = 0;
-        $jobdetails->save();
+    public function unPublishJobDetails($id){
+        $job_details = Jobdetails::find($id);
+        $job_details->is_active = 0;
+        $job_details->save();
 
         return back();
     }
-    public function publishedjobDetails($id){
-        $jobdetails = Jobdetails::find($id);
-        $jobdetails->status = 1;
-        $jobdetails->save();
+    public function publishJobDetails($id){
+        $job_details = Jobdetails::find($id);
+        $job_details->is_active = 1;
+        $job_details->save();
 
         return back();
     }
 
-    public function deletejobDetails($id){
-        $jobdetails = Jobdetails::find($id);
-        $jobdetails->delete();
-
-        return back()->with('message','Category Deleted Successfully');
+    public function deleteJobDetails($id){
+        $job_details = Jobdetails::find($id);
+        try{
+            $job_details->delete();
+            return back()->with('message','Job Deleted Successfully');
+        }catch (\Exception $e){
+            return back()->with('message','Job Deletion is Not possible!');
+        }
 
     }
     public function updateJobDetails(Request $request){

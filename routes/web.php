@@ -29,7 +29,7 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
     });
 
 
-//for admin
+    //for admin
     Route::prefix('category')->group(function (){
         Route::get('/','CategoryController@index')->name('admin.category');
         Route::post('/', 'CategoryController@saveCategory')->name('admin.category-save');
@@ -41,6 +41,7 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 
 
     Route::prefix('cv-list')->group(function (){
+        Route::get('/short-list', 'ManageCvController@shortlistedCv')->name('admin.shortlisted.cv');
         Route::get('/{id?}','ManageCvController@index')->name('admin.cv-list');
         Route::post('/', 'ManageCvController@index')->name('admin.view-cv');
 
@@ -55,10 +56,10 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 //for jobDetails
     Route::get('/job-details','JobdetailsController@index')->name('admin.job-details');
     Route::post('/job-details','JobdetailsController@saveJobDetails')->name('admin.save-jobDetails');
-    Route::get('/job-details/unpublished/{id}', 'JobdetailsController@unpublishedjobDetails')->name('admin.unpub-jobDetails');
-    Route::get('/job-details/published/{id}', 'JobdetailsController@publishedjobDetails')->name('admin.pub-jobDetails');
+    Route::get('/job-details/unpublished/{id}', 'JobdetailsController@unPublishJobDetails')->name('admin.unpub-jobDetails');
+    Route::get('/job-details/published/{id}', 'JobdetailsController@publishJobDetails')->name('admin.pub-jobDetails');
     Route::post('/job-details/update', 'JobdetailsController@updateJobDetails')->name('admin.edit-jobDetails');
-    Route::get('/job-details/delete/{id}', 'JobdetailsController@deletejobDetails')->name('admin.delete-jobDetails');
+    Route::get('/job-details/delete/{id}', 'JobdetailsController@deleteJobDetails')->name('admin.delete-jobDetails');
 
 //for Aptitude question
     Route::get('/aptitude','AptitudeQuesController@index')->name('admin.aptitude');
@@ -78,12 +79,22 @@ Route::get('category/{id}', 'CategoryController@index')->name('show.category');
 Route::middleware('auth')->group(function (){
     Route::get('/myProfile','MyProfileController@index')->name('user.create-cv');
     Route::post('/myProfile','MyProfileController@saveCvDetails')->name('user.saveCvDetails');
-    Route::get('/cv/profile','MyProfileController@showCV')->name('cv.profile');
-    Route::post('/cv/add/experience','MyProfileController@addExperience')->name('cv.add.experience');
-    Route::get('/cv/add/education','MyProfileController@addEducation')->name('cv.add.education');
-    Route::get('/cv/add/skills','MyProfileController@addSkills')->name('cv.add.skills');
+
+    Route::prefix('cv')->group(function (){
+        Route::get('profile','MyProfileController@showCV')->name('cv.profile');
+        Route::post('add/experience','MyProfileController@addExperience')->name('cv.add.experience');
+        Route::post('add/education','MyProfileController@addEducation')->name('cv.add.education');
+        Route::post('add/skills','MyProfileController@addSkills')->name('cv.add.skills');
+    });
+
 
     Route::get('/apply-job/{job_id}','MainController@apply')->name('apply.job');
+
+    Route::get('/contact','ContactController@index')->name('contact');
+    Route::post('/contact','ContactController@saveContact')->name('save-contact');
+
 });
+
+
 
 

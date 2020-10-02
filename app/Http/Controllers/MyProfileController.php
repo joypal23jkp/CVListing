@@ -40,17 +40,21 @@ class MyProfileController extends Controller
         $createCV->candidate_id =   Auth::user()->id;
         $createCV->save();
 
-        return redirect()->back()->with('message','Job Details Added Successfully');
+        return redirect()->back()->with('message',' Successfully');
     }
 
     // Showing some cv.
     public function showCv(){
-        $cv = CreateCV::where('candidate_id', '=', Auth::user()->id)->first();
-        $experience = Experience::where('cv_id', '=', $cv->id)->get();
-        $education = Education::where('cv_id', '=', $cv->id)->get();
-        $skills = Skill::where('cv_id', '=', $cv->id)->get();
+        try {
+            $cv = CreateCV::where('candidate_id', '=', Auth::user()->id)->first();
+            $experience = Experience::where('cv_id', '=', $cv->id)->get();
+            $education = Education::where('cv_id', '=', $cv->id)->get();
+            $skills = Skill::where('cv_id', '=', $cv->id)->get();
 
-       return view('front-end.create-cv.viewCv', ['cv' => $cv, 'experiences' => $experience, 'education' => $education, 'skills' => $skills]);
+            return view('front-end.create-cv.viewCv', ['cv' => $cv, 'experiences' => $experience, 'education' => $education, 'skills' => $skills]);
+        }catch (\Exception $e) {
+            return redirect()->back();
+        }
     }
 
     // Adding Experience to CV.
@@ -58,9 +62,10 @@ class MyProfileController extends Controller
        $experience = new Experience();
        $experience->position = $request->position;
        $experience->org_name = $request->org_name;
-       $experience->year_of_exprience = $request->year_of_exprience;
+       $experience->year_of_experience = $request->year_of_experience;
        $experience->cv_id = $request->cv_id;
        if ($experience->save()){
+
            return redirect()->back()->with('message','Experience Added Successfully');
        }
     }

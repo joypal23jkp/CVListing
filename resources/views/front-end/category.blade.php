@@ -47,6 +47,7 @@
                 <p class="post-meta">
                     {{ $job->category_id }}
                 </p>
+                <a type="button" class="btn btn-primary btn-sm text-white" href="{{ route('apply.job', ['id' => $job->id ]) }}">Apply</a>
                 <hr>
                 @endforeach
             </div>

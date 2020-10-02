@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobCVSTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateJobCVSTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_c_v_s', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('job_id');
-            $table->unsignedBigInteger('cv_id');
-            $table->integer('cv_weight');
-            $table->foreign('job_id')->on('jobdetails')->references('id');
-            $table->foreign('cv_id')->on('create_c_v_s')->references('id');
+            $table->text('name');
+            $table->text('email');
+            $table->text('phone_number');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateJobCVSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_c_v_s');
+        Schema::dropIfExists('contacts');
     }
 }

@@ -21,18 +21,16 @@ class JobsCriteriaController extends Controller
     public function saveJobsCriteria(Request $request){
         $jobs_criteria = new JobsCriteria();
 
-        $job = Jobdetails::where('job_title', '=', $request->job_title)->first();
-//        dd($request->job_title);
+        $job = Jobdetails::find($request->job_id);
         $criteria = new Criteria();
         $criteria->criteria_name = $request->criteria_name;
         $criteria->criteria_description = $request->criteria_description;
-
         if ($criteria->save() && $job != null ){
-            $jobs_criteria->job_detail_id = $job->id;
+            $jobs_criteria->job_detail_id = $request->job_id;
             $jobs_criteria->criteria_id = $criteria->id;
             $jobs_criteria->evaluation_point = $request->criteria_point;
             $jobs_criteria->criteria_type = $request->criteria_type;
-            if ($criteria->save()){
+            if ($criteria->save() && $jobs_criteria->save()){
                 return $this->showMessage('Jobs Criteria Added Successfully');
             }
         }

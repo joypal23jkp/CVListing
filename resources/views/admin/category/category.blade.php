@@ -45,7 +45,7 @@
                                     <th>Sl No</th>
                                     <th>Category Name</th>
                                     <th>Category Description</th>
-                                    <th>Status</th>
+{{--                                    <th>Status</th>--}}
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -57,7 +57,7 @@
                                         <td>{{$i++}}</td>
                                         <td>{{$category->cat_name}}</td>
                                         <td>{{$category->cat_desc}}</td>
-                                        <td>{{$category->status==1 ? 'published':'unpublished'}}</td>
+{{--                                        <td>{{$category->status==1 ? 'published':'unpublished'}}</td>--}}
 
                                     <td>
                                         @if($category->status==1)
