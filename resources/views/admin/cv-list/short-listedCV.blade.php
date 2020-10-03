@@ -43,9 +43,11 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+{{--                                {{ \App\JobCV::where('job_id', '=', 1)->get() }}--}}
                                 @foreach($job_cv_list as $key => $job_cv)
                                     <?php
-                                    $cv = \App\CreateCV::find($job_cv->cv_id)->first();
+                                    $cv = \App\CreateCV::find($job_cv->cv_id );
+
                                     ?>
                                     <tr>
                                         <td>{{ $key+1 }}</td>

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 @if($jobs_list != null )
-                    {{ \Illuminate\Support\Facades\Auth::guard('admin')->user() }}
+{{--                    {{ \Illuminate\Support\Facades\Auth::guard('admin')->user() }}--}}
                     @foreach($jobs_list as $jobs)
                         <div class="post-preview">
                             <a href="post.html">

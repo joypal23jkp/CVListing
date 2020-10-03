@@ -48,6 +48,9 @@
                                     $i = 1;
                                 @endphp
                                 @foreach($managecv as $cv)
+                                    <?php
+                                        $manage_cv_id = $cv->id;
+                                    ?>
                                     <tr>
                                         <td>{{$i++}}</td>
                                         <td>{{$cv->id}}</td>
@@ -55,11 +58,11 @@
                                         <td>{{$cv->address}}</td>
                                         <td>{{$cv->contact}}</td>
                                         <td>
-                                            <a href="#viewModal{{$cv->id}}" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" >
+                                            <a href="#viewModal{{$cv->id}}" class="btn btn-success" data-toggle="modal" data-target="#viewModal{{$cv->id}}" >
                                                 <span><i class="fa fa-arrows"></i> </span> </a>
                                         </td>
                                     </tr>
-                                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal fade bd-example-modal-lg" id="viewModal{{$cv->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="card" style="width: 100%; padding: 20px; border: 1px solid green">

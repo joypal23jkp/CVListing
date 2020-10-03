@@ -95,6 +95,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($experiences as $ex)
                             <li class="list-group-item">{{ $ex->position.' -> '.$ex->org_name.' -> '.$ex->year_of_experience }}
+                                <a type="button" id="removecriteria" class="btn btn-secondary btn-sm" href="{{ route('cv.remove.experience', ['id' => $ex->id]) }}">Remove</a>
                                 <hr>
                         @endforeach
 
@@ -109,6 +110,9 @@
                     <ul class="list-group list-group-flush">
                         @foreach($education as $edu)
                             <li class="list-group-item">{{ $edu->title.' -> '.$edu->academic_year.' -> '.$edu->result }} </li>
+
+                            <a type="button" id="removecriteria" class="btn btn-secondary btn-sm" href="{{ route('cv.remove.education', ['id' => $edu->id]) }}">Remove</a>
+                            <hr>
                         @endforeach
 
                         <li class="list-group-item">
@@ -122,6 +126,8 @@
                     <ul class="list-group list-group-flush">
                         @foreach($skills as $skill)
                             <li class="list-group-item">{{ $skill->title }} </li>
+                            <a type="button" id="removecriteria" class="btn btn-secondary btn-sm" href="{{ route('cv.remove.skills', ['id' => $skill->id]) }}">Remove</a>
+                            <hr>
                         @endforeach
 
                         <li class="list-group-item">
@@ -230,6 +236,10 @@
     </div>
 </div>
 
+<script>
+  function removeExperience($id){
+   }
+</script>
 <!--===============================================================================================-->
 <script src="{{asset('/front-end/login')}}/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

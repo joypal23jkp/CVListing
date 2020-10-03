@@ -70,25 +70,29 @@ class MainController extends Controller
             $weighted_value = 0;
             //looping criteria to function one by one
          foreach ($job_criteria as $criteria) {
-             //
-             if ($criteria->criteria_type == 'experience' ){
-                $conditions = [ 'year_of_experience' => Criteria::find($criteria->criteria_id)->criteria_name, 'cv_id' => $cv->id ];
+
+             if (trim(strtolower($criteria->criteria_type)) == 'experience' ){
+
+                 $conditions = [ 'year_of_experience' => Criteria::find($criteria->criteria_id)->criteria_name, 'cv_id' => $cv->id ];
                  $experience = Experience::where($conditions)->first();
                  if($experience) $weighted_value = $weighted_value + $criteria->evaluation_point;
 
              }
-             if ($criteria->criteria_type == 'education'){
+             if (trim(strtolower($criteria->criteria_type)) == 'education'){
 
                  $conditions = [ 'title' => Criteria::find($criteria->criteria_id)->criteria_name, 'cv_id' => $cv->id ];
                  $education = Education::where($conditions)->first();
                  if($education) $weighted_value = $weighted_value + $criteria->evaluation_point;
+
              }
-             if ($criteria->criteria_type == 'skill'){
+             if (trim(strtolower($criteria->criteria_type)) == 'skill'){
+
                  $conditions = [ 'title' => Criteria::find($criteria->criteria_id)->criteria_name, 'cv_id' => $cv->id ];
                  $skill = Skill::where($conditions)->first();
                  if($skill) $weighted_value = $weighted_value + $criteria->evaluation_point;
 
              }
+
             }
         return $weighted_value;
      }

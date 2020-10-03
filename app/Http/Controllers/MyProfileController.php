@@ -65,11 +65,15 @@ class MyProfileController extends Controller
        $experience->year_of_experience = $request->year_of_experience;
        $experience->cv_id = $request->cv_id;
        if ($experience->save()){
-
            return redirect()->back()->with('message','Experience Added Successfully');
        }
     }
 
+    public function removeExperience($id){
+        if(Experience::find($id)->delete()){
+            return redirect()->back()->with('msg', 'Valoi hoise!');
+        }
+    }
 
     public function addEducation(Request $request){
         $education = new Education();
@@ -82,12 +86,27 @@ class MyProfileController extends Controller
         }
     }
 
+
+    public function removeEducation($id){
+        if(Education::find($id)->delete()){
+            return redirect()->back()->with('msg', 'Valoi hoise!');
+        }
+    }
     public function addSkills(Request $request){
         $skills = new Skill();
         $skills->title = $request->title;
         $skills->cv_id = $request->cv_id;
         if ($skills->save()){
-            return redirect()->back()->with('message','Education Added Successfully');
+            return redirect()->back()->with('message','skills Added Successfully');
         }
     }
+
+
+    public function removeSkills($id){
+        if(Skill::find($id)->delete()){
+            return redirect()->back()->with('msg', 'Valoi hoise!');
+        }
+    }
+
+
 }

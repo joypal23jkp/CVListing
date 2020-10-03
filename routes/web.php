@@ -83,8 +83,11 @@ Route::middleware('auth')->group(function (){
     Route::prefix('cv')->group(function (){
         Route::get('profile','MyProfileController@showCV')->name('cv.profile');
         Route::post('add/experience','MyProfileController@addExperience')->name('cv.add.experience');
+        Route::get('remove/experience/{id}','MyProfileController@removeExperience')->name('cv.remove.experience');
         Route::post('add/education','MyProfileController@addEducation')->name('cv.add.education');
+        Route::get('remove/education/{id}','MyProfileController@removeEducation')->name('cv.remove.education');
         Route::post('add/skills','MyProfileController@addSkills')->name('cv.add.skills');
+        Route::get('remove/skills/{id}','MyProfileController@removeSkills')->name('cv.remove.skills');
     });
 
 
