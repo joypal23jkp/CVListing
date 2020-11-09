@@ -16,35 +16,62 @@
             @foreach($jobs as $job)
             <div class="post-preview">
                 <a href="">
+                <p class="post-meta">
+                    Job title:
+                </p>
                     <h2 class="post-title">
                         {{ $job->job_title }}
                     </h2>
-                    <h3 class="post-subtitle">
+                <p class="post-meta">
+                    Company name:
+                </p>
+                    <h4 class="post-subtitle">
                         {{ $job->company_name }}
-                    </h3>
+                    </h4>
                 </a>
                 <p class="post-meta">
+                    Job responsibility:
+                </p>
+                <p class="post-preview">
                     {{ $job->job_responsibilities }}
                 </p>
                 <p class="post-meta">
+                    Employee status:
+                </p>
+                <p class="post-preview">
                     {{ $job->employee_status }}
                 </p>
                 <p class="post-meta">
+                    Educational requirement:
+                </p>
+                <p class="post-preview">
                     {{ $job->educational_requirement }}
                 </p>
                 <p class="post-meta">
+                    Experience requirement:
+                </p>
+                <p class="post-preview">
                     {{ $job->experience_requirement }}
                 </p>
                 <p class="post-meta">
+                    Additional requirement:
+                </p>
+                <p class="post-preview">
                     {{ $job->additional_requirement }}
                 </p>
                 <p class="post-meta">
+                    job location:
+                </p>
+                <p class="post-preview">
                     {{ $job->job_location }}
                 </p>
                 <p class="post-meta">
+                    Salary:
+                </p>
+                <p class="post-preview">
                     {{ $job->salary }}
                 </p>
-                <p class="post-meta">
+                <p class="post-preview">
                     {{ $job->category_id }}
                 </p>
                 <a type="button" class="btn btn-primary btn-sm text-white" href="{{ route('apply.job', ['id' => $job->id ]) }}">Apply</a>
@@ -52,6 +79,7 @@
                 @endforeach
             </div>
         </div>
+    </div>
 
 </body>
 </html>
