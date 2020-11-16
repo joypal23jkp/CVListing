@@ -68,9 +68,6 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 
 
 // candidate routes
-Route::get('/', function(){
-    return 'Hello';
-})->name('home');
 Auth::routes();
 
 // Route::get('/', 'MainController@index')->name('home');
