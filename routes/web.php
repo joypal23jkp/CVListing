@@ -68,10 +68,12 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 
 
 // candidate routes
-
+Route::get('/', function(){
+    return 'Hello';
+})->name('home');
 Auth::routes();
 
-Route::get('/', 'MainController@index')->name('home');
+// Route::get('/', 'MainController@index')->name('home');
 Route::get('category/{id}', 'CategoryController@index')->name('show.category');
 
 //front end CV
