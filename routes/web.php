@@ -70,7 +70,7 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 // candidate routes
 Auth::routes();
 
-// Route::get('/', 'MainController@index')->name('home');
+Route::get('/', 'MainController@index')->name('home');
 Route::get('category/{id}', 'CategoryController@index')->name('show.category');
 
 //front end CV
